@@ -1,0 +1,27 @@
+{
+  "name": "devel-site-ssr",
+  "version": "1.0.0",
+  "description": "Web site with heavy focus on light weight and speed for the end user. \r Built with Vue 2.0 + vue-router + vuex, with server-side rendering.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "supervisor": "^0.12.0",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.5.17"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevelDoe/devel-site-ssr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevelDoe/devel-site-ssr/issues"
+  },
+  "homepage": "https://github.com/DevelDoe/devel-site-ssr#readme"
+}
