@@ -1,23 +1,53 @@
-const server = require('express')()
-const renderer = require('vue-server-renderer').createRenderer()
+const fs = require('fs')
+const express = require('express')
+const { createBundleRenderer } = require('vue-server-renderer')
 
-const createApp = require('/path/to/built-server-bundle.js')
+const isProduction = process.env.NODE_ENV === 'production'
 
-server.get('*', (req, res) => {
-    const context = { url: req.url  }
-    createApp(context).then(app => {
-        renderer.renderToString(app, (err, html) => {
-            if (err) {
-                if (err.code === 404) {
-                    res.status(404).end('Page not found')
-                } else {
-                    res.status(500).end('Internal Server Error')
-                }
-            } else {
-                res.end(html)
-            }
-        })
+const app = express()
+
+let renderer
+let devServerReady
+
+const templatePath = fs.readFileSync('./index.html', 'utf-8')
+
+if(isProduction) {
+    const bundle = require('./dist/vue-ssr-server-bundle.json')
+
+    renderer = createBundleRenderer(bundle, {
+        basedir: './dist',
+        template: templatePath,
+        clientManifest: require('./dist/vue-ssr-client-manifest.json')
     })
+} else {
+    const devServer = require('./build/dev-server')
+    devServerReady = devServer(app, templatePath, (bundle, options) => {
+        renderer = createBundleRenderer(bundle, options)
+    })
+}
+
+
+
+app.use('/dist', express.static('./dist'))
+
+function render(request, response) {
+    return renderer.renderToString({
+        url: request.url
+    }, (err, html) => {
+        response.send(html)
+    })
+}
+
+app.get('*', (request, response) => {
+
+    if(isProduction) {
+        render(request, response)
+    } else {
+        devServerReady.then(() => {
+            render(request, response)
+        })
+    }
+
 })
 
-server.listen(8080)
+app.listen(8080)
