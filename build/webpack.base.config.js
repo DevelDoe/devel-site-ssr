@@ -43,7 +43,7 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(png|jpg|gif|svg)$/,
+                test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg|gif)(\?[a-z0-9=.]+)?$/,
                 loader: 'url-loader',
                 options: {
                     name: '[name].[ext]?[hash]'

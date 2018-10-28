@@ -1,51 +1,85 @@
 <template>
-    <article>
-        <header>
-            <h1>{{ post.title }}</h1>
-            <h2>Subtitle of Article</h2>
-        </header>
+    <article class="row" id="post">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <header>
+                <h2>{{ post.category }} - {{ post.title }}</h2>
+                <small v-if="post.original"> <a :href="post.original">Orginal article</a> </small>
+            </header>
 
-        <section>
-            <h3>First Logical Part (e.g. "Theory")</h3>
-            <p>Paragraph 1 in first section</p>
+            <section class="summary">
+                <p >{{ post.summary }}</p>
+            </section>
 
-            <h4>Some Other Subheading in First Section</h4>
-            <p>Paragraph 2 in first section</p>
-        </section>
+            <section>
+                <p v-html="md"></p>
+            </section>
 
-        <section>
-            <h3>Second Logical Part (e.g. "Practice")</h3>
-            <p>Paragraph 1 in second section</p>
-            <p>Paragraph 2 in second section</p>
-        </section>
-
-        <footer>
-            <h4>Author Bio</h4>
-            <p>Paragraph in Article's Footer</p>
-        </footer>
-
+            <footer>
+                <!-- <h4>Author Bio</h4>
+                <p>Paragraph in Article's Footer</p> -->
+            </footer>
+        </div>
+    
     </article>
 </template>
 
 <script>
+const hljs = require('highlight.js')
+const markdown = require('markdown-it')({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return '<pre class="hljs"><code>' +
+               hljs.highlight(lang, str, true).value +
+               '</code></pre>';
+      } catch (__) {}
+    }
+
+    return '<pre class="hljs"><code>' + markdown.utils.escapeHtml(str) + '</code></pre>';
+  }
+})
 import { mapGetters, mapActions } from 'vuex'
 export default {
     computed: {
-        ...mapGetters([ 'post' ])
-    },
-    methods: {
-        ...mapActions([ 'getPost' ]),
-        nextPost() {
-            // this.getPost(parseInt(this.post.id) + 1)
-            this.$router.push({ params: { id: parseInt(this.$route.params.id) + 1 } })
+        ...mapGetters([ 'post' ]),
+        md() {
+            return markdown.render(this.post.body)
         }
     },
+    methods: {
+        ...mapActions([ 'getPost' ])
+    },
     title() {
-        return 'Home'
+        return  this.post.title
     },
     asyncData({ store, route }) {
         return store.dispatch('getPost', route.params.id)
+    },
+    mounted() {
+        
     }
 }
 </script>
+
+<style lang="scss">
+#post {
+
+     p {
+
+        margin: 20px 0;
+    }
+    
+    .summary{
+        padding: 0 15px;
+        p {
+            padding: 0 ;
+            color: #666;
+            font-size: 1.7em;
+            margin-bottom: 0;
+            margin: 20px 0;
+        }
+    }
+}
+</style>
 

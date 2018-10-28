@@ -1,49 +1,48 @@
 <template>
-    <div id="app">
+    <div id="app" class="container-fluid">
+
         
-        <header>
-            <h1>Devel SSR Site</h1>
-            <p>built with Vue 2.0 + vue-router + vuex, with server-side rendering.</p>
+
+        <header class="row header">
+            <h1><router-link :to="{ path: '/'}">log.develdevils</router-link></h1>
         </header>
+        
 
-        <nav>
-            <header>
-                <h2>This is the navigation heading</h2>
-            </header>
-            <ul>
-                <li><router-link :to="{ path: '/'}">home</router-link></li>
-            </ul>
-        </nav>
-
+        <transition name="fade" mode="out-in" >
         <router-view/>
+        </transition>
 
-        <aside>
-
-            <h2>Get To Know Us Better</h2>
-
-            <section>
-                <h3>Popular Posts</h3>
-                <ul>...</ul>
-            </section>
-
-            <section>
-                <h3>Partners</h3>
-                <ul>...</ul>
-            </section>
-
-            <section>
-                <h3>Testimonials</h3>
-                <ul>...</ul>
-            </section>
-
-        </aside>
-
+    
         <footer>
             <ul>
-                <li>Copyright</li>
-                <li>Social Media Links</li>
+                <li>ĕn-jĕnˈdər by DevelDoe | </li>
+                <li><a href="https://www.facebook.com/develdoe"> facebook</a> | </li>
+                <li><a href="https://www.github.com/develdoe"> github</a> | </li>
+                <li><a href="https://www.instagram.com/develdoe"> instagram</a> | </li>
+                <li><a href="http://andreeray.se"> andreeray.se</a></li>
             </ul>
         </footer>
         
     </div>
 </template>
+
+<style lang="scss">
+#app {
+    
+    .header {
+        padding: 10px;
+        margin-bottom: 15px;
+
+        h1 {
+            padding: 0;
+            margin:0;
+            font-size: 1rem;
+        }
+    }
+    footer {
+        li {
+            float: left;
+        }
+    }
+}
+</style>

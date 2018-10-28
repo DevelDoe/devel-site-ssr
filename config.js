@@ -1,3 +1,3 @@
 module.exports = {
-    api_url: 'https://jsonplaceholder.typicode.com/todos'
+    api_url: 'http://35.210.92.246:4002/public'
 }

@@ -17,6 +17,7 @@ export function createRouter() {
             {
                 path: '/post/:id',
                 component: Post,
+                name: 'post'
             }
         ]
     })
