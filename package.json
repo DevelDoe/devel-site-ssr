@@ -13,10 +13,12 @@
     "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.server.config.js --progress --hide-modules"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.4",
     "vue": "^2.4.4",
     "vue-router": "^3.0.1",
-    "vue-server-renderer": "^2.5.17"
+    "vue-server-renderer": "^2.5.17",
+    "vuex": "^3.0.1"
   },
   "browserslist": [
     "> 1%",
@@ -30,6 +32,7 @@
     "babel-preset-stage-3": "^6.24.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",

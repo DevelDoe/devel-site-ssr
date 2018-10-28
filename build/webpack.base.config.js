@@ -1,5 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
 
@@ -12,32 +15,19 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: [
-                    'vue-style-loader', 
-                    'css-loader'
-                ]
-            },
-            {
                 test: /\.scss$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ],
-            },
-            {
-                test: /\.sass$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ],
+                use: isProduction 
+                    ? ExtractTextPlugin.extract({
+                        fallback: 'vue-style-loader',
+                        use: [ 'css-loader', 'sass-loader' ]
+                    })
+                    : ['vue-style-loader', 'css-loader', 'sass-loader' ],
             },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
+                    extractCSS: isProduction,
                     loaders: {
                         'scss': [
                             'vue-style-loader',
@@ -67,5 +57,13 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js'
         },
         extensions: ['*', '.js', '.vue', '.json']
-    }
+    },
+
+    plugins: isProduction 
+    ? [
+        new webpack.optimize.UglifyJsPlugin(),
+        new ExtractTextPlugin({
+            filename: '[name].css'
+        })
+    ] : []
 }

@@ -31,9 +31,13 @@ if(isProduction) {
 app.use('/dist', express.static('./dist'))
 
 function render(request, response) {
-    return renderer.renderToString({
+
+    const context = {
+        title: 'ssr',
         url: request.url
-    }, (err, html) => {
+    }
+
+    return renderer.renderToString(context, (err, html) => {
         response.send(html)
     })
 }
