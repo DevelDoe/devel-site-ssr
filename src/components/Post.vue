@@ -1,8 +1,30 @@
 <template>
-    <div>
-        <h3>{{ post.title }}</h3>
-        <a href="#" @click.prevent="nextPost">Next post</a>
-    </div>
+    <article>
+        <header>
+            <h1>{{ post.title }}</h1>
+            <h2>Subtitle of Article</h2>
+        </header>
+
+        <section>
+            <h3>First Logical Part (e.g. "Theory")</h3>
+            <p>Paragraph 1 in first section</p>
+
+            <h4>Some Other Subheading in First Section</h4>
+            <p>Paragraph 2 in first section</p>
+        </section>
+
+        <section>
+            <h3>Second Logical Part (e.g. "Practice")</h3>
+            <p>Paragraph 1 in second section</p>
+            <p>Paragraph 2 in second section</p>
+        </section>
+
+        <footer>
+            <h4>Author Bio</h4>
+            <p>Paragraph in Article's Footer</p>
+        </footer>
+
+    </article>
 </template>
 
 <script>
