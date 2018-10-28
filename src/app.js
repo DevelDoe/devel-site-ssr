@@ -5,10 +5,12 @@ import { createStore } from './store'
 
 import style from './assets/scss/root.scss'
 
-import title from './mixins/title'
-Vue.mixin(title) 
+
 import asyncData from './mixins/asyncData'
 Vue.mixin(asyncData)
+
+import title from './mixins/title'
+Vue.mixin(title)
 
 Vue.directive('focus', {
     inserted: function (el) {

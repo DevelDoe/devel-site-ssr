@@ -4,7 +4,7 @@
         
 
         <header class="row header">
-            <h1><router-link :to="{ path: '/'}">log.develdevils</router-link></h1>
+            <h1><a href="/" class="">log.develdevils</a></h1>
         </header>
         
 

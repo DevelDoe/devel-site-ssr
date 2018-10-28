@@ -51,13 +51,10 @@ export default {
         ...mapActions([ 'getPost' ])
     },
     title() {
-        return  this.post.title
+        return this.post.category + ' ' + this.post.title
     },
     asyncData({ store, route }) {
         return store.dispatch('getPost', route.params.id)
-    },
-    mounted() {
-        
     }
 }
 </script>
