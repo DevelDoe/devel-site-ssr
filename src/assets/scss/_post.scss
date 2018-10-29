@@ -47,8 +47,8 @@
 
         pre,
         img {
-            width: calc(100% + 60px);
-            margin-left: -30px;
+            width: calc(100% + 30px);
+            margin-left: -15px;
             font-size: .6rem;
         }
 
@@ -85,14 +85,13 @@
         }
         .body {
             padding: 20px 30px;
-            
             h4 {
                 font-size: 1.4rem;
             }
             pre,
             img {
-                width: calc(100% + 50px);
-                margin-left: -25px;
+                width: calc(100% + 60px);
+                margin-left: -30px;
                 font-size: 1rem;
             }
         }
