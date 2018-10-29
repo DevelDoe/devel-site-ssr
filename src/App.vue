@@ -31,7 +31,6 @@
     
     .header {
         padding: 10px;
-        margin-bottom: 15px;
 
         h1 {
             padding: 0;
