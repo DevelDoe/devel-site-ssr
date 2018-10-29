@@ -1,12 +1,19 @@
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
 
-    output: {
+    output: isProduction
+    ? {
+        path: path.resolve(__dirname, '../../../server/apps/logdeveldevils'),
+        publicPath: '/logdeveldevils/',
+        filename: 'build.js'
+    } 
+    : {
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/dist/',
         filename: 'build.js'
@@ -44,7 +51,7 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg|gif)(\?[a-z0-9=.]+)?$/,
-                loader: 'url-loader',
+                loader: 'file-loader',
                 options: {
                     name: '[name].[ext]?[hash]'
                 }
@@ -64,6 +71,9 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin(),
         new ExtractTextPlugin({
             filename: '[name].css'
-        })
-    ] : []
+        }),
+        new VueLoaderPlugin()
+    ] : [
+        new VueLoaderPlugin()
+    ]
 }

@@ -15,7 +15,7 @@
             <transition name="fade" mode="out-in" >
             <div class="results" v-show="search">
                 <div v-for="(post, i) in filterSearch" class="result" :key="'search' + i">
-                    <a :href="'/post/' + post._id" class="">  {{ post.title }} </a>
+                    <a :href="'/post/' + post._id" >  {{ post.title }} </a>
                 </div>
                 <div class="noResults" v-show="filterSearch.length == 0">
                     No results...
@@ -27,24 +27,25 @@
 
 
         <div class="row posts">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
 
-                <section v-for="(post, i) in sortedPosts" :key="i">
-                    <a :href="'/post/' + post._id" class="">
+
+            <section v-for="(post, i) in sortedPosts" :key="i" class="post col">
+                <a :href="'/post/' + post._id" class="">
+                <header class="summary">
                     <h2>{{ post.category }} - {{ post.title }}</h2>
-                    <p class="summary">{{ post.summary }}</p>
-                    <div>
-                        <span v-for="(tag, i) in post.tags" :key="'tag'+ i" class="tag">{{tag}} </span>
-                    </div>
-                    
-                    </a>
-                </section>
+                    <h3 >{{ post.summary }}</h3>
+                </header>
                 
-            </div>
-            <aside class="col-md-4">
+                <div>
+                    <span v-for="(tag, i) in post.tags" :key="'tag'+ i" class="tag">{{tag}} </span>
+                </div>
+                
+                </a>
+            </section>
 
-                <!-- <h2>Get To Know Us Better</h2>
+            <!-- <aside class="col-md-4">
+
+                <h2>Get To Know Us Better</h2>
 
                 <section>
                     <h3>Popular Posts</h3>
@@ -59,9 +60,9 @@
                 <section>
                     <h3>Testimonials</h3>
                     <ul>...</ul>
-                </section> -->
+                </section>
 
-            </aside>
+            </aside> -->
         </div>
 
 
@@ -117,86 +118,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-#posts {
-    .sticky {
-            position: sticky;
-            right: 0;
-            top: 10px;
-            margin-bottom: -53px;
-        img {
-            width: 30px;
-            cursor: pointer;
-            float: right;
-        }
-    }
-    
-    .gSearch {
-         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        min-height: 100%;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, .9) 100%, transparent);
-        z-index: 9998;
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 30px;
-            cursor: pointer;
-        }
-
-        .search {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            margin-top: 5%;
-            margin-left: 10%;
-
-            .search-input {
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-                font-size: 6rem;
-                background: none;
-                color: #ccc;
-                box-shadow: none !important;
-                border: 0;
-                padding: 0;
-                font-weight: 800;
-            }
-        }
-        .results {
-            color: #ccc;
-            padding: 2% 17%;
-
-            .result {
-                font-size:24px;
-                a{
-                    color: #ccc;
-                    cursor: pointer;
-                    &:hover {
-                        color:#eee;
-                    }
-                }
-            }
-        }
-    }
-    .posts {
-        padding-top: 60px;
-    }
-    .summary {
-        margin-bottom: 5px;
-    }
-    .tag {
-        background-color: #b0b0d43b;
-        padding:  2px 5px;
-        border-radius: 1px;
-        margin-right: 5px;
-        margin-top: 5px;
-    }
-}
-</style>

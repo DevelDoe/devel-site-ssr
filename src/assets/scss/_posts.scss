@@ -1,0 +1,154 @@
+#posts {
+    
+
+    .posts {
+        padding-top: 60px;
+        max-width: 860px;
+        margin: 0 auto;
+    }
+
+    .post {
+        background: $white;
+        margin-bottom: 15px;
+        padding: 40px 50px;
+        
+
+        .summary {
+
+            h3 {
+                font-family: 'Nunito', Fallback, sans-serif;
+                margin-bottom: 5px;
+                margin-top: 5px;
+            }
+        }
+    }
+    
+    .sticky {
+        position: sticky;
+        right: 0;
+        top: 10px;
+        margin-bottom: -53px;
+
+        img {
+            width: 30px;
+            cursor: pointer;
+            float: right;
+        }
+    }
+
+    .gSearch {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, .9) 100%, transparent);
+        z-index: 9998;
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            cursor: pointer;
+        }
+
+        .search {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-top: 5%;
+            margin-left: 10%;
+
+            .search-input {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                font-family: 'Dank Mono', Fallback, sans-serif;
+                font-size: 6rem;
+                background: none;
+                color: #ccc;
+                box-shadow: none !important;
+                border: 0;
+                padding: 0;
+                font-weight: 800;
+            }
+        }
+
+        .results {
+            color: #ccc;
+            padding: 2% 17%;
+
+            .result {
+                font-size: 24px;
+
+                a {
+                    color: #ccc;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #eee;
+                    }
+                }
+            }
+            .noResults {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .tag {
+        background-color: #b0b0d43b;
+        padding: 2px 5px;
+        border-radius: 1px;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+}
+
+// Small (sm) devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+    #posts {
+        .post {
+            margin-bottom: 15px;
+            padding: 20px 25px;
+
+            .summary {
+                h2 {
+                    font-size: 1.4rem;
+                }
+
+                h3 {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+// Medium (md) devices (tablets, 768px and up)
+@media (max-width: 768px) {
+    #posts {
+        .post {
+            margin-bottom: 5px;
+            padding: 30px 40px;
+
+            .summary {
+                h2 {
+                    font-size: 24px;
+                }
+
+                h3 {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    
+}
+
+// Large (lg) devices (desktops, 992px and up)
+@media (min-width: 992px) { }
+
+// Extra (xl) large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  }

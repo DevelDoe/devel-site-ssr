@@ -1,17 +1,17 @@
 <template>
     <article class="row" id="post">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <header>
+        <div class="col">
+            <header class="header">
                 <h2>{{ post.category }} - {{ post.title }}</h2>
                 <small v-if="post.original"> <a :href="post.original">Orginal article</a> </small>
             </header>
 
             <section class="summary">
+                <h3>Summary</h3>
                 <p >{{ post.summary }}</p>
             </section>
 
-            <section>
+            <section class="body">
                 <p v-html="md"></p>
             </section>
 
@@ -25,7 +25,16 @@
 </template>
 
 <script>
-const hljs = require('highlight.js')
+import hljs from 'highlight.js/lib/highlight'
+import javascript from 'highlight.js/lib/languages/javascript'
+hljs.registerLanguage('javascript', javascript)
+import css from 'highlight.js/lib/languages/css'
+hljs.registerLanguage('css', css)
+import html from 'highlight.js/lib/languages/xml'
+hljs.registerLanguage('html', html)
+import bash from 'highlight.js/lib/languages/bash'
+hljs.registerLanguage('bash', bash)
+
 const markdown = require('markdown-it')({
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
@@ -58,25 +67,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-#post {
-
-     p {
-
-        margin: 20px 0;
-    }
-    
-    .summary{
-        padding: 0 15px;
-        p {
-            padding: 0 ;
-            color: #666;
-            font-size: 1.7em;
-            margin-bottom: 0;
-            margin: 20px 0;
-        }
-    }
-}
-</style>
-
