@@ -3,7 +3,7 @@
         <div class="col">
             <header class="header">
                 <h2>{{ post.category }} - {{ post.title }}</h2>
-                <small v-if="post.original"> <a :href="post.original">Orginal article</a> </small>
+                <small  class="muted-text"> <span v-if="post.original"> <a :href="post.original">Orginal article</a></span> | {{ moment(post.publishedAt).format('DD MMMM')}}</small>
             </header>
 
             <section class="summary">
@@ -49,7 +49,13 @@ const markdown = require('markdown-it')({
   }
 })
 import { mapGetters, mapActions } from 'vuex'
+import moment from 'moment'
 export default {
+    data() {
+        return {
+            moment
+        }
+    },
     computed: {
         ...mapGetters([ 'post' ]),
         md() {

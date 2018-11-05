@@ -33,6 +33,7 @@
                 <a :href="'/post/' + post._id" class="">
                 <header class="summary">
                     <h2>{{ post.category }} - {{ post.title }}</h2>
+                    <small class="muted-text">{{ moment(post.publishedAt).format('DD MMMM')}}</small>
                     <h3 >{{ post.summary }}</h3>
                 </header>
                 
@@ -72,11 +73,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import moment from 'moment'
 export default {
     data() {
         return {
             search: '',
-            showSearch: false
+            showSearch: false,
+            moment
         }
     },
     computed: {
@@ -87,7 +90,7 @@ export default {
             })
         },
         sortedPosts() {
-            return this.publishedPosts.sort((a,b) => b.createdAt - a.createdAt ) // change to published at
+            return this.publishedPosts.sort((a,b) => moment(b.publishedAt).unix() - moment(a.publishedAt).unix() ) // change to published at
         },
         filterSearch() {
             return this.publishedPosts.filter( post => {

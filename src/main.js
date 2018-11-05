@@ -1,6 +1,6 @@
 import { createApp } from './app'
 
-const { app, store } = createApp()
+const { app, store, moment } = createApp()
 
 if(window.__INITIAL_STATE__) {
     store.replaceState(window.__INITIAL_STATE__)
