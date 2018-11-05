@@ -42,6 +42,7 @@ html {
         position: relative;
         padding-bottom: 40px;
         min-height: 100%;
+        line-height: 1.62;
         
 
         h1,h2,h3,h4,h5,h6 {
@@ -65,7 +66,7 @@ html {
         }
 
         p {
-            font-size: 1.125em;
+            font-size: 1.25em;
         }
 
         a {
@@ -81,11 +82,17 @@ html {
         pre {
             margin: 20px 0;
             border-top: 10px solid #b0b0d4;
+            font-size: .9rem;
         }
         
         footer {
             position: absolute;
             bottom: 0;
+        }
+
+        em {
+            font-size: 0.8rem;
+            font-style: italic;
         }
     }
 }

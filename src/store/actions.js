@@ -15,3 +15,10 @@ export const getPost = ({ commit }, id) => {
         console.log(err)
     })
 }
+export const getAuthors = ({ commit }) => {
+    return axios.get(`${config.api_url}/authors`).then( res => {
+        commit('setAuthors', res.data)
+    }).catch( err => {
+        console.log(err)
+    })
+}

@@ -3,7 +3,12 @@
         <div class="col">
             <header class="header">
                 <h2>{{ post.category }} - {{ post.title }}</h2>
-                <small  class="muted-text"> <span v-if="post.original"> <a :href="post.original">Orginal article</a></span> | {{ moment(post.publishedAt).format('DD MMMM')}}</small>
+                <div class="meta muted-text">
+                    <img v-if="author" :src="author.img_src" />
+                    <span  v-if="author">{{ author.username }}</span>
+                    <span>{{ moment(post.publishedAt).format('DD MMMM')}}</span>
+                    <span v-if="post.original"> <a :href="post.original">Orginal</a></span>
+                </div>
             </header>
 
             <section class="summary">
@@ -53,23 +58,48 @@ import moment from 'moment'
 export default {
     data() {
         return {
-            moment
+            moment 
         }
     },
     computed: {
-        ...mapGetters([ 'post' ]),
+        ...mapGetters([ 'post', 'authors' ]),
         md() {
             return markdown.render(this.post.body)
+        },
+        author( id ) {
+            return this.authors.find(author => author._id === this.post.user_id) || null
         }
-    },
-    methods: {
-        ...mapActions([ 'getPost' ])
     },
     title() {
         return this.post.category + ' ' + this.post.title
     },
+    description() {
+        return this.post.summary
+    },
     asyncData({ store, route }) {
-        return store.dispatch('getPost', route.params.id)
+
+        let authors 
+        let posts
+        let ready 
+        const readyPromise = new Promise((resolve, reject) => {
+            ready = resolve
+        })
+        const update = () => {
+            if(authors && posts) {
+                ready()
+            }
+        }
+
+        store.dispatch('getAuthors').then(()=>{
+            authors = true
+            update()
+        })
+        store.dispatch('getPost', route.params.id).then(()=>{
+            posts = true
+            update()
+        })
+
+        return readyPromise
     }
 }
 </script>

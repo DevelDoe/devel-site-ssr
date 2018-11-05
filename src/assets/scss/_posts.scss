@@ -1,7 +1,7 @@
 #posts {
 
     .posts {
-        padding-top: 60px;
+        padding-top: 40px;
         max-width: 860px;
         margin: 0 auto;
     }
@@ -22,6 +22,30 @@
                 font-size: 1rem;
                 font-family: 'Nunito', Fallback, sans-serif;
                 margin: 5px 0;
+            }
+
+            .meta {
+                font-size: 1rem;
+                padding: 5px 0;
+                span {
+                    margin-right: 10px;
+                }
+                img {
+                    width: 40px;
+                    margin-right: 2px;
+                }
+            }
+        }
+
+        .tags {
+            .tag {
+                font-size: .6rem;
+                display: inline-block;
+                background-color: #b0b0d43b;
+                padding: 2px 5px;
+                border-radius: 1px;
+                margin-right: 5px;
+                margin-top: 5px;
             }
         }
     }
@@ -101,13 +125,7 @@
         }
     }
 
-    .tag {
-        background-color: #b0b0d43b;
-        padding: 2px 5px;
-        border-radius: 1px;
-        margin-right: 5px;
-        margin-top: 5px;
-    }
+
 }
 
 // Small (sm) devices (landscape phones, 576px and up)
@@ -178,6 +196,22 @@
                     font-size: 20px;
                     
                 }
+            }
+        }
+
+        aside {
+            li {
+                font-size: 1rem;
+                background-color: #1414bf3b;
+                padding: 10px 10px;
+                border-radius: 1px;
+                margin-right: 5px;
+                margin-top: 5px;
+                color: #d9dee4;
+                cursor: pointer;
+            }
+            .tag {
+                display: inline-block;
             }
         }
 

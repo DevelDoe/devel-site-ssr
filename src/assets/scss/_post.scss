@@ -1,6 +1,7 @@
 #post {
     max-width: 860px;
     margin: 0 auto;
+    padding-top: 25px;
 
     section {
         margin: 5px 0;
@@ -17,6 +18,20 @@
 
         h2 {
             font-size: 30px;
+        }
+
+        .meta {
+            font-size: 1rem;
+            padding: 5px 0;
+
+            span {
+                margin-right: 10px;
+            }
+
+            img {
+                width: 40px;
+                margin-right: 2px;
+            }
         }
     }
 

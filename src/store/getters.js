@@ -4,3 +4,6 @@ export const posts = (state) => {
 export const post = (state) => {
     return state.post
 }
+export const authors = (state) => {
+    return state.authors
+}

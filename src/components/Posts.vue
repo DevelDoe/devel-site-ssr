@@ -15,7 +15,7 @@
             <transition name="fade" mode="out-in" >
             <div class="results" v-show="search">
                 <div v-for="(post, i) in filterSearch" class="result" :key="'search' + i">
-                    <a :href="'/post/' + post._id" >  {{ post.title }} </a>
+                    <a :href="'/post/' + post._id" > {{ post.category }} - {{ post.title }} </a>
                 </div>
                 <div class="noResults" v-show="filterSearch.length == 0">
                     No results...
@@ -26,44 +26,69 @@
          </transition>
 
 
-        <div class="row posts">
+        <div class="posts">
 
-
-            <section v-for="(post, i) in sortedPosts" :key="i" class="post col">
-                <a :href="'/post/' + post._id" class="">
-                <header class="summary">
-                    <h2>{{ post.category }} - {{ post.title }}</h2>
-                    <small class="muted-text">{{ moment(post.publishedAt).format('DD MMMM')}}</small>
-                    <h3 >{{ post.summary }}</h3>
-                </header>
-                
-                <div>
-                    <span v-for="(tag, i) in post.tags" :key="'tag'+ i" class="tag">{{tag}} </span>
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="post">
+                        <a :href="'/post/' + featuredPost._id" class="">
+                        <header class="summary">
+                            <h2>{{ featuredPost.category }} - {{ featuredPost.title }}</h2>
+                            <div class="meta muted-text">
+                                <img :src="author(featuredPost.user_id).img_src" />
+                                <span>{{ author(featuredPost.user_id).username }}</span>
+                                <span>{{ moment(featuredPost.publishedAt).format('DD MMMM')}}</span>
+                            </div>
+                            <h3 >{{ featuredPost.summary }}</h3>
+                        </header>
+                        
+                        <div class="tags">
+                            <span v-for="(tag, i) in featuredPost.tags" :key="'tag'+ i" class="tag">{{tag}} </span>
+                        </div>
+                        
+                        </a>
+                    </section>
                 </div>
-                
-                </a>
-            </section>
+            </div>
 
-            <!-- <aside class="col-md-4">
+            <div class="row">
+                <div class="col-md-8 ">
+                    <section v-for="(post, i) in filteredPosts" :key="i" class="post">
+                        <a :href="'/post/' + post._id" class="">
+                        <header class="summary">
+                            <h2>{{ post.category }} - {{ post.title }}</h2>
+                            <div class="meta muted-text">
+                                <img :src="author(post.user_id).img_src" />
+                                <span>{{ author(post.user_id).username }}</span>
+                                <span>{{ moment(post.publishedAt).format('DD MMMM')}}</span>
+                            </div>
+                            <h3 >{{ post.summary }}</h3>
+                        </header>
+                        
+                        <div class="tags">
+                            <span v-for="(tag, i) in post.tags" :key="'tag'+ i" class="tag">{{tag}} </span>
+                        </div>
+                        
+                        </a>
+                    </section>
+                </div>
+                <aside class="col-md-4">
 
-                <h2>Get To Know Us Better</h2>
+                    <section>
+                        <ul>
+                            <li v-for="(cat, i) in categories" :key="'cat' + i">{{ cat }}</li>
+                        </ul>
+                    </section>
 
-                <section>
-                    <h3>Popular Posts</h3>
-                    <ul>...</ul>
-                </section>
+                    <section>
+                        <ul>
+                            <li v-for="(tag, i) in tags" :key="'tag' + i" class="tag">{{ tag }}</li>
+                        </ul>
+                    </section>
 
-                <section>
-                    <h3>Partners</h3>
-                    <ul>...</ul>
-                </section>
 
-                <section>
-                    <h3>Testimonials</h3>
-                    <ul>...</ul>
-                </section>
-
-            </aside> -->
+                </aside>
+            </div>            
         </div>
 
 
@@ -83,29 +108,81 @@ export default {
         }
     },
     computed: {
-        ...mapGetters([ 'posts' ]),
+        ...mapGetters([ 'posts', 'authors']),
         publishedPosts() {
             return this.posts.filter( post => {
                 return post.published === true
             })
         },
         sortedPosts() {
-            return this.publishedPosts.sort((a,b) => moment(b.publishedAt).unix() - moment(a.publishedAt).unix() ) // change to published at
+            return this.publishedPosts.sort((a,b) => moment(b.publishedAt).unix() - moment(a.publishedAt).unix() )
+        },
+        filteredPosts() {
+            return this.sortedPosts.filter( post => post._id !== this.featuredPost._id)
         },
         filterSearch() {
             return this.publishedPosts.filter( post => {
                 return post.body.toLowerCase().indexOf( this.search.toLowerCase() ) > -1 || post.title.toLowerCase().indexOf( this.search.toLowerCase() ) > -1 || post.summary.toLowerCase().indexOf( this.search.toLowerCase() ) > -1 || post.tags.indexOf(this.search.toLowerCase()) > -1 ;
             })
         },
+        featuredPost() {
+            return this.sortedPosts.filter(post => post.feat ).shift()
+        },
+        categories() {
+            let categories = []
+            this.posts.forEach(post => {
+                categories.push(post.category)
+            })
+            return categories.filter((category, index, self) => {
+                return self.indexOf(category) === index
+            })
+        },
+        tags() {
+            let tags = []
+            this.posts.forEach(post => {
+                post.tags.forEach(tag => {
+                    tags.push(tag)
+                })
+                
+            })
+            return tags.filter((tag, index, self) => {
+                return self.indexOf(tag) === index
+            })
+        }
     },
     methods: {
-        ...mapActions([ 'getPosts' ])
+        author( id ) {
+            return this.authors.find(author => author._id === id)
+        }
     },
     title() {
         return 'home'
     },
+    description() {
+        return 'Andree DevelDoe Ray, a front end engineer who loves all things HTML, CSS and Javascript. This is my blog.'
+    },
     asyncData({ store, route }) {
-        return store.dispatch('getPosts')
+        let authors 
+        let posts 
+        let ready 
+        const readyPromise = new Promise((resolve, reject) => {
+            ready = resolve
+        })
+        const update = () => {
+            if(authors && posts) {
+                ready()
+            }
+        }
+
+        store.dispatch('getAuthors').then(()=>{
+            authors = true
+            update()
+        })
+        store.dispatch('getPosts').then(()=>{
+            posts = true
+            update()
+        })
+        return readyPromise
     },
     updated() {
         if(this.showSearch)  this.$nextTick(() => this.$refs.search.focus())

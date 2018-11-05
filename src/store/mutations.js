@@ -4,5 +4,8 @@ export default {
     },
     setPost(state, post) {
         state.post = post
+    },
+    setAuthors(state, authors) {
+        state.authors = authors
     }
 }

@@ -4,11 +4,21 @@ function getTitle(vm) {
         return typeof title === 'function' ? title.call(vm) : title
     }
 }
+function getDescription(vm) {
+    const { description } = vm.$options 
+    if(description) {
+        return typeof description === 'function' ? description.call(vm) : description
+    }
+}
 const serverTitleMixin = {
     created() {
         const title = getTitle(this)
+        const description = getDescription(this)
         if(title) {
             this.$ssrContext.title = `log.develdevils | ${title}`
+        }
+        if(description) {
+            this.$ssrContext.description = `${description}`
         }
     }
 }
@@ -16,8 +26,12 @@ const serverTitleMixin = {
 const clientTitleMixin = {
     mounted() {
         const title = getTitle(this)
+        const description = getDescription(this)
         if (title) {
             document.title = `log.develdevils | ${title}`
+        }
+        if (description) {
+            document.description = `${description}`
         }
     }
 }
