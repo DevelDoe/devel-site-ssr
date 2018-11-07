@@ -1,9 +1,22 @@
 #posts {
 
     .posts {
-        padding-top: 40px;
         max-width: 860px;
         margin: 0 auto;
+        padding-top: 5px;
+    }
+
+    #feat {
+        background: #5e6375;
+
+        a {
+            color: #f3f3f3;
+        }
+        
+        .tag {
+            background: #acb0db;
+            color: #5e6375;
+        }
     }
 
     .post {
@@ -41,91 +54,74 @@
             .tag {
                 font-size: .6rem;
                 display: inline-block;
-                background-color: #b0b0d43b;
+                background-color: #9aa5ce;
                 padding: 2px 5px;
                 border-radius: 1px;
                 margin-right: 5px;
                 margin-top: 5px;
+                color: #f3f3f3;
             }
         }
     }
     
     .sticky {
-        position: sticky;
-        right: 0;
+        position: absolute;
+        right: 10px;
         top: 10px;
         margin-bottom: -31px;
 
         img {
-            width: 30px;
+            width: 25px;
             cursor: pointer;
             float: right;
         }
     }
 
-    .gSearch {
-        position: absolute;
-        top: 0;
-        left: 0;
+    #searchInput {
         width: 100%;
-        min-height: 100%;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, .9) 100%, transparent);
-        z-index: 9998;
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 30px;
-            cursor: pointer;
-            z-index: 9999;
-        }
-
-        .search {
-            position: relative;
-            margin: 0 auto;
-            padding: 0 20px;
-            margin-top: 10%;
-            margin-left: 10%;
-
-            .search-input {
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-                font-family: 'Dank Mono', Fallback, sans-serif;
-                font-size: 2rem;
-                background: none;
-                color: #ccc;
-                box-shadow: none !important;
-                border: 0;
-                padding: 0;
-                font-weight: 800;
-                max-width: 90%;
-            }
-        }
-
-        .results {
-            color: #ccc;
-            padding: 2% 17%;
-
-            .result {
-                font-size: 1rem;
-
-                a {
-                    color: #ccc;
-                    cursor: pointer;
-
-                    &:hover {
-                        color: #eee;
-                    }
-                }
-            }
-            .noResults {
-                font-size: .6rem;
-            }
-        }
+        border: none;
+        padding: 5px 15px 8px;
+        font-size: 1.5rem;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: 'Dank Mono', Fallback, sans-serif;
+        color: $white;
+        background: #8790b1;
+        margin-bottom: 10px;
+    }
+    ::placeholder {
+        /* Most modern browsers support this now. */
+        color: #acb0db;
+    }
+    .noResults {
+        padding: 15px;
+        font-size: 1.5rem;
+        color: #8790b1;
     }
 
+    .btn {
+        width: 49%;
+        border: none;
+        background: #9399b3;
+        font-size: 1rem;
+        color: #d9dee4;
+        padding: 10px;
+    }
+    .btn.active {
+        background: #8790b1;
+        color: #d9dee4;
+    }
 
+    aside {
+        display: none;
+    }
+
+}
+
+@media (min-width: 768px) {
+    #searchInput {
+        margin-bottom: 0px !important;
+    }
 }
 
 // Small (sm) devices (landscape phones, 576px and up)
@@ -148,29 +144,6 @@
             }
         }
 
-        .gSearch {
-
-            .search {
-                margin-top: 10%;
-                margin-left: 10%;
-
-                .search-input {
-                    font-size: 4rem;
-                }
-            }
-
-            .results {
-                padding: 2% 17%;
-
-                .result {
-                    font-size: 1.4rem;
-                }
-
-                .noResults {
-                    font-size: 1rem;
-                }
-            }
-        }
     }
 }
 
@@ -200,9 +173,11 @@
         }
 
         aside {
+            display: block;
+
             li {
                 font-size: 1rem;
-                background-color: #1414bf3b;
+                background-color: #9399b3;
                 padding: 10px 10px;
                 border-radius: 1px;
                 margin-right: 5px;
@@ -210,33 +185,15 @@
                 color: #d9dee4;
                 cursor: pointer;
             }
+
+            li.active {
+                background-color: #8790b1;
+            }
+
             .tag {
                 display: inline-block;
             }
         }
-
-        .gSearch {
-
-            .search {
-                margin-top: 10%;
-                margin-left: 10%;
-
-                .search-input {
-                    font-size: 4rem;
-                }
-            }
-
-            .results {
-                padding: 2% 17%;
-
-                .result {
-                    font-size: 1.4rem;
-                }
-
-                .noResults {
-                    font-size: 1rem;
-                }
-            }
-        }
     }
+    
 }

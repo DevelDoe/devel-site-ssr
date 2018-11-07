@@ -1,7 +1,7 @@
 #post {
     max-width: 860px;
     margin: 0 auto;
-    padding-top: 25px;
+    padding-top: 5px;
 
     section {
         margin: 5px 0;
@@ -13,8 +13,13 @@
     }
 
     .header {
-        background: $white;
+        background: #5e6375;
+        color: #f3f3f3;
         padding: 15px 15px;
+
+        a {
+            color: #f3f3f3;
+        }
 
         h2 {
             font-size: 30px;
@@ -125,6 +130,7 @@
     }
 
     #post {
+        padding-top: 20px;
 
         .header {
             padding: 40px 50px;

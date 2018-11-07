@@ -81,7 +81,7 @@ html {
 
         pre {
             margin: 20px 0;
-            border-top: 10px solid #b0b0d4;
+            border-top: 10px solid #8790b1;
             font-size: .9rem;
         }
         
@@ -93,6 +93,57 @@ html {
         em {
             font-size: 0.8rem;
             font-style: italic;
+        }
+    }
+    #app {
+        position: relative;
+
+        .headeri {
+            padding: 20px 0 0 5px;
+            margin: 0 auto;
+           
+
+            h1 {
+                padding: 0;
+                margin: 0;
+                font-size: 1.2rem;
+
+                a {
+                    color: #424652;
+                    letter-spacing: 4px;
+                }
+            }
+        }
+
+        footer {
+            li {
+                float: left;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    #app {
+
+        .headeri {
+            padding: 20px 0 0 !important;
+            width: 860px;
+            
+
+            h1 {
+                font-size: 40px !important;
+
+                a {
+                    letter-spacing: 8px !important;
+                }
+            }
+        }
+
+        footer {
+            li {
+                float: left;
+            }
         }
     }
 }
