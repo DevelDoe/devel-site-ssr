@@ -73,6 +73,7 @@ html {
             color: $black;
             text-decoration: none;
             cursor: pointer;
+            font-family: 'Nunito', Fallback, sans-serif;
 
             &:hover {
                 color: black;
@@ -118,6 +119,26 @@ html {
         footer {
             li {
                 float: left;
+            }
+        }
+
+        #sticky {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+
+            #top {
+                opacity: 0;
+                padding: 10px 20px;
+                background: #5e6375;
+                color: #d9dee4;
+                transition: opacity .5s ease;
+                letter-spacing: 3px;
+                font-size: 1rem;
+            }
+
+            #top.display {
+                opacity: 1;
             }
         }
     }

@@ -2,24 +2,6 @@
     <div id="posts">
 
         
-        <transition name="fade" mode="out-in" >
-        <div class="gSearch" v-if="showSearch">
-            
-
-            <transition name="fade" mode="out-in" >
-            <div class="results" v-show="search">
-                <div v-for="(post, i) in filterSearch" class="result" :key="'search' + i">
-                    <a :href="'/post/' + post._id" > {{ post.category }} - {{ post.title }} </a>
-                </div>
-                <div class="noResults" v-show="filterSearch.length == 0">
-                    No results...
-                </div>
-            </div>
-            </transition>
-            
-        </div>
-         </transition>
-
 
         <div class="posts">
 
@@ -97,7 +79,10 @@
                     <div class="noResults" v-show="filterSearch.length == 0">
                         No results...
                     </div>
+
+                    
                 </div>
+
 
 
                 <aside class="col-md-4">
@@ -116,9 +101,14 @@
                         </ul>
                     </section>
 
-
                 </aside>
+
+                
             </div>            
+
+           
+            
+            
         </div>
 
 
@@ -133,7 +123,6 @@ export default {
     data() {
         return {
             search: '',
-            showSearch: false,
             moment,
             swedish: false,
             english: true,
@@ -144,8 +133,14 @@ export default {
     computed: {
         ...mapGetters([ 'posts', 'authors']),
         featuredPost() {
+            // sort posts by date
             const sortedPosts = this.posts.sort((a,b) => moment(b.publishedAt).unix() - moment(a.publishedAt).unix() )
-            return sortedPosts.filter(post => post.feat ).shift()
+            // filter by language
+            let languages
+            if ((this.swedish && this.english) || (!this.swedish && !this.english)) languages = sortedPosts
+            else if (this.swedish) languages = sortedPosts.filter( post => post.lang === 'sv' )
+            else languages = sortedPosts.filter( post => post.lang === 'en' )
+            return languages.filter(post => post.feat ).shift()
         },
         filterPosts() {
             // only published posts
@@ -189,7 +184,13 @@ export default {
         },
         categories() {
             let categories = []
-            this.posts.forEach(post => {
+            const published = this.posts.filter( post => { return post.published === true })
+            const withoutFeatured = published.filter( post => post._id !== this.featuredPost._id )
+            let languages
+            if ((this.swedish && this.english) || (!this.swedish && !this.english)) languages = withoutFeatured
+            else if (this.swedish) languages = withoutFeatured.filter( post => post.lang === 'sv' )
+            else languages = withoutFeatured.filter( post => post.lang === 'en' )
+            languages.forEach(post => {
                 categories.push(post.category)
             })
             return categories.filter((category, index, self) => {
@@ -200,7 +201,11 @@ export default {
             let tags = []
             const published = this.posts.filter( post => { return post.published === true })
             const withoutFeatured = published.filter( post => post._id !== this.featuredPost._id )
-            withoutFeatured.forEach(post => {
+            let languages
+            if ((this.swedish && this.english) || (!this.swedish && !this.english)) languages = withoutFeatured
+            else if (this.swedish) languages = withoutFeatured.filter( post => post.lang === 'sv' )
+            else languages = withoutFeatured.filter( post => post.lang === 'en' )
+            languages.forEach(post => {
                 post.tags.forEach(tag => {
                     tags.push(tag)
                 })
@@ -257,6 +262,7 @@ export default {
     },
     updated() {
         if(this.showSearch)  this.$nextTick(() => this.$refs.search.focus())
-    }  
+    },
+    
 }
 </script>

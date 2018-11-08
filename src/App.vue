@@ -12,10 +12,40 @@
         <router-view/>
         </transition>
 
+         <div id="sticky">
+            <a id="top">scroll top</a>
+        </div>
         
     </div>
 </template>
 
-<style lang="scss">
+<script>
+export default {
+    mounted() {
+        var sticky = document.getElementById("top")
+        var searchInput = document.getElementById("searchInput")
 
-</style>
+        function smoothscroll(){
+            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop
+            if (currentScroll > 0) {
+                window.requestAnimationFrame(smoothscroll)
+                window.scrollTo (0,currentScroll - (currentScroll/5))
+            }
+        }
+        
+        
+        sticky.onclick = function() { smoothscroll() }
+        
+        window.onscroll = () => {
+            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop
+            if (currentScroll > 300) {
+                sticky.classList.add("display");
+            } else {
+                sticky.classList.remove("display");
+            }
+        }
+        
+    }
+}
+</script>
+
