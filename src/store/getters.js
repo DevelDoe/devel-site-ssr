@@ -7,3 +7,6 @@ export const post = (state) => {
 export const authors = (state) => {
     return state.authors
 }
+export const author = (state) => {
+    return state.author
+}

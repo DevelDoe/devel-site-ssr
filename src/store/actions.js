@@ -9,11 +9,18 @@ export const getPosts = ({ commit }) => {
     })
 }
 export const getPost = ({ commit }, id) => {
-    return axios.get(`${config.api_url}/post/?id=${id}`).then( res => {
-        commit('setPost', res.data)
+
+    return axios.get(`${config.api_url}/post/?id=${id}`).then( p => {
+        return axios.get(`${config.api_url}/author/?id=${p.data.user_id}`).then(a => {
+            commit('setPost', p.data)
+            commit('setAuthor', a.data)
+        }).catch(err => {
+            console.log(err)
+        })
     }).catch(err => {
         console.log(err)
     })
+
 }
 export const getAuthors = ({ commit }) => {
     return axios.get(`${config.api_url}/authors`).then( res => {

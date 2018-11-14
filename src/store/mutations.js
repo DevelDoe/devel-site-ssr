@@ -7,5 +7,8 @@ export default {
     },
     setAuthors(state, authors) {
         state.authors = authors
-    }
+    },
+    setAuthor(state, author) {
+        state.author = author
+    },
 }

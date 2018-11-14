@@ -12,12 +12,6 @@ Vue.mixin(asyncData)
 import title from './mixins/title'
 Vue.mixin(title)
 
-Vue.directive('focus', {
-    inserted: function (el) {
-        el.focus()
-    }
-})
-
 export function createApp() {
     const router = createRouter()
     const store = createStore()

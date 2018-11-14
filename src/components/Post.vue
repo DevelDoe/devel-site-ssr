@@ -20,12 +20,12 @@
                 <p v-html="md"></p>
             </section>
 
-            <footer>
-                <!-- <h4>Author Bio</h4>
-                <p>Paragraph in Article's Footer</p> -->
-            </footer>
+            <!-- <footer>
+                <h4>Author Bio</h4>
+                <p>Paragraph in Article's Footer</p>
+            </footer> -->
         </div>
-    
+
     </article>
 </template>
 
@@ -58,16 +58,13 @@ import moment from 'moment'
 export default {
     data() {
         return {
-            moment 
+            moment
         }
     },
     computed: {
-        ...mapGetters([ 'post', 'authors' ]),
+        ...mapGetters([ 'post', 'author' ]),
         md() {
             return markdown.render(this.post.body)
-        },
-        author( id ) {
-            return this.authors.find(author => author._id === this.post.user_id) || null
         }
     },
     title() {
@@ -77,29 +74,7 @@ export default {
         return this.post.summary
     },
     asyncData({ store, route }) {
-
-        let authors 
-        let posts
-        let ready 
-        const readyPromise = new Promise((resolve, reject) => {
-            ready = resolve
-        })
-        const update = () => {
-            if(authors && posts) {
-                ready()
-            }
-        }
-
-        store.dispatch('getAuthors').then(()=>{
-            authors = true
-            update()
-        })
-        store.dispatch('getPost', route.params.id).then(()=>{
-            posts = true
-            update()
-        })
-
-        return readyPromise
+        return store.dispatch('getPost', route.params.id)
     }
 }
 </script>
