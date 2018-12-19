@@ -1,6 +1,6 @@
 import { web_socket, app_name } from '../../config'
 
-const debugSocket = true
+const debugSocket = false
 
 if (debugSocket) console.log('---socket.js---')
 
