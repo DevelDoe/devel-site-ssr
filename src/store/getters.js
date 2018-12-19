@@ -1,3 +1,4 @@
+export const app_name = ( state ) => { return state.app_name }
 export const posts = (state) => {
     return state.posts
 }

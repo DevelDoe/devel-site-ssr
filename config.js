@@ -1,7 +1,5 @@
-export const app_name = 'log.develdevils'
+export const app_name = 'master'
 
-export const url = 'http://35.210.92.246:4002'
+export const url = 'http://35.210.92.246:4000'
 
-export const api_url = 'http://35.210.92.246:4002/public'
-
-export const web_socket = 'ws://35.210.92.246:4002'
+export const web_socket = 'ws://35.210.92.246:4000'

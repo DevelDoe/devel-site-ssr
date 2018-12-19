@@ -4,7 +4,7 @@
         
 
         <header class="row headeri">
-            <h1><a href="/" class="">log.develdevils</a></h1>
+            <h1><a href="/" class="">{{app_name}}</a></h1>
         </header>
         
 
@@ -15,13 +15,7 @@
         <footer >
             <div class="row" >
                 <div class="col-md-6">
-                    <h1>log.develdevils.se</h1>
-                    <h4>//** ABOUT */</h4>
-                    <p>
-                        Welcome! Ny name is Andree Ray, aka DevelDoe, a HTML, CSS and JavaScript ninja @DevelDevils. This applications is built with Vue and Server Side Rendering. Vue is a modular JavaScript library that encapsulat components that manages their own state. 
-                        My main purpose for this site is just as a content bin for whatever I am looking in to at the moment. If you like to get in touch, please contact me by <a href="mailto:me@andreeray.se" target="_top">email</a>.<br> 
-                        Many best wishes / Andree "DevelDoe" Ray.
-                    </p>
+                    
                 </div>
             </div>
             
@@ -36,8 +30,12 @@
 
 <script>
 import {web_socket} from '../config'
+import { mapGetters } from 'vuex'
 export default {
     name: 'App',
+    computed: {
+        ...mapGetters(['app_name'])
+    },
     mounted() {
         var sticky = document.getElementById("top")
         var searchInput = document.getElementById("searchInput")

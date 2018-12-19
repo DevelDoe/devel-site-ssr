@@ -1,109 +1,13 @@
 <template>
     <div id="posts">
 
-        
-
         <div class="posts">
 
             <div class="row">
                 <div class="col-md-12">
-                    <section class="post" id="feat">
-                        <a :href="'/post/' + featuredPost._id" class="">
-                        <header class="summary">
-                            <h2>{{ featuredPost.category }} - {{ featuredPost.title }}</h2>
-                            <div class="meta muted-text">
-                                <img :src="url + author(featuredPost.user_id).img_src" />
-                                <span>{{ author(featuredPost.user_id).username }}</span>
-                                <span>{{ moment(featuredPost.publishedAt).format('DD MMMM')}}</span>
-                            </div>
-                            <h3 >{{ featuredPost.summary }}</h3>
-                        </header>
-                        
-                        <div class="tags">
-                            <span v-for="(tag, i) in featuredPost.tags" :key="'tag'+ i" class="tag">{{tag}} </span>
-                        </div>
-                        
-                        </a>
-                    </section>
-                </div>
-            </div>
-
-
-            <div class="row">
-
-                <div class="col-md-8 ">
-
-                    <input type="text" id="searchInput" placeholder="search" v-model="search" autofocus>
-
-
-                    <div class="results" >
-                        <div v-if="search">
-                            <section v-for="(post, i) in filterSearch" :key="i" class="post" >
-                                <a :href="'/post/' + post._id" class="">
-                                <header class="summary">
-                                <h2>{{ post.category }} - {{ post.title }}</h2>
-                                <div class="meta muted-text">
-                                    <span>{{ moment(post.publishedAt).format('DD MMMM')}}</span>
-                                </div>
-                                <h3 >{{ post.summary }}</h3>
-                                </header>
-                                <div class="tags">
-                                    <span v-for="(tag, i) in post.tags" :key="'tag'+ i" class="tag">{{tag}} </span>
-                                </div>
-                                </a>
-                            </section>
-                        </div>
-                        <div v-else>
-                            <section v-for="(post, i) in filterPosts" :key="i" class="post"  >
-                                <a :href="'/post/' + post._id" class="">
-                                <header class="summary">
-                                <h2>{{ post.category }} - {{ post.title }}</h2>
-                                <div class="meta muted-text">
-                                    <span>{{ moment(post.publishedAt).format('DD MMMM')}}</span>
-                                </div>
-                                <h3 >{{ post.summary }}</h3>
-                                </header>
-
-                                <div class="tags">
-                                    <span v-for="(tag, i) in post.tags" :key="'tag'+ i" class="tag">{{tag}} </span>
-                                </div>
-                                </a>
-                            </section>
-                        </div>
-                    </div>
-
-                    <div class="noResults" v-show="filterSearch.length == 0">
-                        No results...
-                    </div>
-
                     
                 </div>
-
-
-
-                <aside class="col-md-4">
-
-                    <button class="btn":class="{active: english || !english && !swedish}" @click="english = !english" title="English">english</button> <button class="btn" :class="{active: swedish || !english && !swedish}" @click="swedish = !swedish" title="Swedish">swedish</button>
-
-                    <section>
-                        <ul>
-                            <li v-for="(cat, i) in categories" :key="'cat' + i" @click="toggleCategories(cat)" :class="{active: caties.indexOf( cat ) !== -1 || !caties.length }">{{ cat }}</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <ul>
-                            <li v-for="(tag, i) in tags" :key="'tag' + i" class="tag" @click="toggleTags(tag)" :class="{active: tagies.indexOf( tag ) !== -1 || !tagies.length }">{{ tag }}</li>
-                        </ul>
-                    </section>
-
-                </aside>
-
-                
             </div>            
-
-           
-            
             
         </div>
 
