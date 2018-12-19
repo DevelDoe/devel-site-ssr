@@ -12,8 +12,8 @@ Vue.mixin(asyncData)
 import title from './mixins/title'
 Vue.mixin(title)
 
-import socket from './mixins/socket'
-Vue.mixin(socket)
+import view from './mixins/view'
+Vue.mixin(view)
 
 export function createApp() {
     const router = createRouter()
