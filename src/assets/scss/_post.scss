@@ -22,19 +22,25 @@
         }
 
         h2 {
-            font-size: 30px;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
         }
 
         .meta {
-            font-size: 1rem;
-            padding: 5px 0;
+            font-size: .7rem;
+            height: 10px;
+            line-height: 10px;
+            margin-bottom: 10px;
 
             span {
-                margin-right: 10px;
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 18px;
+                margin-right: 5px;
             }
 
             img {
-                width: 40px;
+                width: 20px;
                 margin-right: 2px;
             }
         }
@@ -81,12 +87,30 @@
     }
 
     #post {
+
         .header {
             
             padding: 20px 30px;
 
             h2 {
                 font-size: 1.7rem;
+            }
+
+            .meta {
+                font-size: 1.1rem;
+                height: 50px;
+                line-height: 50px;
+                margin-bottom: 15px;
+
+                span {
+                    line-height: 18px;
+                    margin-right: 10px;
+                }
+
+                img {
+                    width: 40px;
+                    margin-right: 2px;
+                }
             }
         }
 
@@ -186,6 +210,10 @@
     #post {
 
         
+
+        
+
+        
         .body {
             padding: 40px 50px;
 
@@ -203,5 +231,7 @@
 
             
         }
+
+        
     }
 }

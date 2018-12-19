@@ -12,7 +12,7 @@
                         <header class="summary">
                             <h2>{{ featuredPost.category }} - {{ featuredPost.title }}</h2>
                             <div class="meta muted-text">
-                                <img :src="author(featuredPost.user_id).img_src" />
+                                <img :src="url + author(featuredPost.user_id).img_src" />
                                 <span>{{ author(featuredPost.user_id).username }}</span>
                                 <span>{{ moment(featuredPost.publishedAt).format('DD MMMM')}}</span>
                             </div>
@@ -43,8 +43,6 @@
                                 <header class="summary">
                                 <h2>{{ post.category }} - {{ post.title }}</h2>
                                 <div class="meta muted-text">
-                                    <img :src="author(post.user_id).img_src" />
-                                    <span>{{ author(post.user_id).username }}</span>
                                     <span>{{ moment(post.publishedAt).format('DD MMMM')}}</span>
                                 </div>
                                 <h3 >{{ post.summary }}</h3>
@@ -61,8 +59,6 @@
                                 <header class="summary">
                                 <h2>{{ post.category }} - {{ post.title }}</h2>
                                 <div class="meta muted-text">
-                                    <img :src="author(post.user_id).img_src" />
-                                    <span>{{ author(post.user_id).username }}</span>
                                     <span>{{ moment(post.publishedAt).format('DD MMMM')}}</span>
                                 </div>
                                 <h3 >{{ post.summary }}</h3>
@@ -119,7 +115,9 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import moment from 'moment'
+import { url } from '../../config'
 export default {
+    name: 'Posts',
     data() {
         return {
             search: '',
@@ -127,7 +125,8 @@ export default {
             swedish: false,
             english: true,
             caties: [],
-            tagies: []
+            tagies: [],
+            url: url
         }
     },
     computed: {
@@ -232,7 +231,7 @@ export default {
         }
     },
     title() {
-        return 'home'
+        return 'Index'
     },
     description() {
         return 'Andree DevelDoe Ray, a front end engineer who loves all things HTML, CSS and Javascript. This is my blog.'

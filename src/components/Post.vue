@@ -4,7 +4,7 @@
             <header class="header">
                 <h2>{{ post.category }} - {{ post.title }}</h2>
                 <div class="meta muted-text">
-                    <img v-if="author" :src="author.img_src" />
+                    <img v-if="author" :src="url + author.img_src" />
                     <span  v-if="author">{{ author.username }}</span>
                     <span>{{ moment(post.publishedAt).format('DD MMMM')}}</span>
                     <span v-if="post.original"> <a :href="post.original">Orginal</a></span>
@@ -55,10 +55,13 @@ const markdown = require('markdown-it')({
 })
 import { mapGetters, mapActions } from 'vuex'
 import moment from 'moment'
+import { url } from '../../config'
 export default {
+    name: 'Post',
     data() {
         return {
-            moment
+            moment,
+            url: url
         }
     },
     computed: {

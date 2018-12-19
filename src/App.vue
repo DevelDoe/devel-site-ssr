@@ -35,7 +35,9 @@
 </template>
 
 <script>
+import {web_socket} from '../config'
 export default {
+    name: 'App',
     mounted() {
         var sticky = document.getElementById("top")
         var searchInput = document.getElementById("searchInput")
