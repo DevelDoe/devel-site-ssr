@@ -1,3 +1,5 @@
+import { app_name } from '../../config'
+
 function getTitle(vm) {
     const { title } = vm.$options
     if(title) {
@@ -15,7 +17,7 @@ const serverTitleMixin = {
         const title = getTitle(this)
         const description = getDescription(this)
         if(title) {
-            this.$ssrContext.title = `log.develdevils | ${title}`
+            this.$ssrContext.title = `${app_name} | ${title}`
         }
         if(description) {
             this.$ssrContext.description = `${description}`
@@ -28,7 +30,7 @@ const clientTitleMixin = {
         const title = getTitle(this)
         const description = getDescription(this)
         if (title) {
-            document.title = `log.develdevils | ${title}`
+            document.title = `${app_name} | ${title}`
         }
         if (description) {
             document.description = `${description}`
