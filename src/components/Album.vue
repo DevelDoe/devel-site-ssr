@@ -43,7 +43,7 @@ export default {
             update()
         })
 
-        store.dispatch( 'getAlbum', this.query.id ).then( () => {
+        store.dispatch( 'getAlbum', route.params.id ).then( () => {
             album = true 
             update()
         })
