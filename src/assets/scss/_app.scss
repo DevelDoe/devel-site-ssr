@@ -21,6 +21,8 @@
     font-style: normal;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Butcherman|Megrim|Poiret+One|Ruge+Boogie');
+
 *:focus {
     outline: 0 !important;
     box-shadow: none !important;
@@ -34,7 +36,7 @@ html {
     -webkit-text-size-adjust: 100%;
 
     body {
-        font-size: 10px;
+        font-size: 1rem;
         font-family: 'Nunito', Fallback, sans-serif;
         letter-spacing: 1px;
         background-color: $background;
@@ -45,11 +47,12 @@ html {
         
 
         h1,h2,h3,h4,h5,h6 {
-            font-family: 'Dank Mono', Fallback, sans-serif;
+            font-family: 'Poiret One', Fallback, sans-serif;
         }
 
         h1 {
-            font-size: 4em;
+            font-size: 2em;
+            font-family: 'Megrim', cursive;
         }
 
         h2 {
@@ -72,34 +75,17 @@ html {
             color: $black;
             text-decoration: none;
             cursor: pointer;
-            font-family: 'Nunito', Fallback, sans-serif;
+            font-family: 'Poiret One', cursive;
 
             &:hover {
                 color: black;
             }
         }
 
-        pre {
-            margin: 20px 0;
-            border-top: 10px solid #8790b1;
-            font-size: .9rem;
-        }
-        
-        footer {
-            margin-top: 60px;
-            height: 60px;
-            background: #8790b1;
-            color: #f3f3f3;
-            width: calc(100% + 30px);
-            margin-left: -15px;
-            padding: 15px;
-            padding-bottom: 30px;
-
-            h1 {
-                font-size: 1rem;
-                padding: 0;
-                margin: 10px 0;
-            }
+        ::placeholder {
+            color: rgba(255,255,255,.65);
+            font-family: 'Megrim', cursive;
+            font-size: 90%;
         }
 
         em {
@@ -108,74 +94,53 @@ html {
         }
     }
     #app {
-        position: relative;
+        width: 100%;
+        max-width: 960px;
 
-        .headeri {
-            padding: 20px 0 0 5px;
-            margin: 0 auto;
-           
-
-            h1 {
-                padding: 0;
-                margin: 0;
-                font-size: 1.2rem;
-
-                a {
-                    color: #424652;
-                    letter-spacing: 4px;
-                }
-            }
-        }
-
-        footer {
-            li {
-                float: left;
-            }
-        }
-
-        #sticky {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-
-            #top {
-                opacity: 0;
-                padding: 10px 20px;
-                background: #5e6375;
-                color: #d9dee4;
-                transition: opacity .5s ease;
-                letter-spacing: 3px;
-                font-size: 1rem;
-            }
-
-            #top.display {
-                opacity: 1;
-            }
-        }
-    }
-}
-
-@media (min-width: 992px) {
-    #app {
-
-        .headeri {
-            padding: 20px 0 0 !important;
-            width: 860px;
-            
+        .header {
+            // border-bottom: 1px solid rgba(0, 0, 0, .0975);
+            height: 80px;
+            padding: 0 15px;
+            position: relative;
 
             h1 {
-                font-size: 40px !important;
-
-                a {
-                    letter-spacing: 8px !important;
-                }
+                display: inline-block;
+                line-height: 53px;
+                height: 80px;
+                padding: 10px;
+                padding-left: 0;
+                font-size: 46px;
+                letter-spacing: 0px;
+                color: #717171;
             }
-        }
 
-        footer {
 
-            h1 {
-                font-size: 2.5rem;
+            input {
+                background: rgba(0, 0, 0, 0.2);
+                color: $white;
+                border: none;
+                border-radius: 3px;
+                font-size: 20px;
+                position: absolute;
+                top: 20px;
+                right: 13px;
+                width: 54%;
+                padding: 3px 10px;
+                max-width: 300px;
+            }
+
+            .search {
+                z-index: 9999;
+                position: absolute;
+                top: 64px;
+                right: 13px;
+                width: 54%;
+                background: #cccccc;
+                color: #ffffff;
+                padding: 10px;
+                font-size: 18px;
+                border-radius: 1px;
+                max-width: 300px;
             }
         }
     }

@@ -22,9 +22,27 @@ export const getPost = ({ commit }, id) => {
     })
 
 }
-export const getAuthors = ({ commit }) => {
-    return axios.get(`${url}/public/authors`).then( res => {
-        commit('setAuthors', res.data)
+
+export const getArtists = ({ commit }) => {
+    return axios.get(`${url}/public/artists`).then( res => {
+        commit('setArtists', res.data)
+    }).catch( err => {
+        console.log(err)
+    })
+}
+
+export const getAlbums  =  ({ commit }) => {
+    return axios.get( `${url}/public/albums` ).then( res => {
+        commit( 'setAlbums', res.data )
+    }).catch( err => {
+        console.log(err)
+    })
+}
+
+export const getAlbum  =  ({ commit }, id) => {
+    return axios.get(`${url}/public/album/?id=${id}`).then(res => {
+        console.log(res.data)
+        commit( 'setAlbum', res.data )
     }).catch( err => {
         console.log(err)
     })

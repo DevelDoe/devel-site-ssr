@@ -5,9 +5,12 @@ export const posts = (state) => {
 export const post = (state) => {
     return state.post
 }
-export const authors = (state) => {
-    return state.authors
+export const artists = (state) => {
+    return state.artists
 }
-export const author = (state) => {
-    return state.author
+export const albums = (state) => {
+    return state.albums
+}
+export const album = (state) => {
+    return state.album
 }
