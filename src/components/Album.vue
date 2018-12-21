@@ -24,7 +24,7 @@ export default {
         return this.album.summary
     },
     asyncData({ store, route }) {
-        
+
         let album
         let ready
 
@@ -43,7 +43,7 @@ export default {
             update()
         })
 
-        store.dispatch( 'getAlbum' ).then( () => {
+        store.dispatch( 'getAlbum', this.query.id ).then( () => {
             album = true 
             update()
         })
