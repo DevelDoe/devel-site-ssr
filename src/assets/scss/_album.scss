@@ -1,0 +1,91 @@
+#album {
+
+     .info {
+          padding: 15px 15px;
+          max-width: 960px;
+          margin: 0 auto;
+          margin-top: 20px;
+
+          
+
+          h2 {
+               font-size: 30px;
+          }
+
+          p {
+               font-size: 20px;
+          }
+     }
+
+     .image {
+          
+          img {
+               display: block;
+               margin: 0 auto;
+               max-width: 100%;
+               margin-bottom: 40px;
+          }
+     }
+
+     .artist {
+          height: 55px;
+          line-height: 55px;
+          position: relative;
+          padding: 15px 15px;
+          max-width: 960px;
+          margin: 0 auto;
+
+          img {
+               display: inline-block;
+               vertical-align: middle;
+               height: 25px;
+               border-radius: 50%;
+          }
+
+          h3 {
+
+               font-size: 20px;
+               left: 43px;
+               position: absolute;
+               display: inline-block;
+               vertical-align: middle;
+               line-height: 60px;
+          }
+     }
+}
+
+
+@media(min-width:768px) {
+#album {
+
+     .info {
+
+          .artist {
+
+               img {
+                    height: 50px;
+               }
+
+               h3 {
+                    font-size: 38px;
+                    left: 60px;
+               }
+          }
+
+          h2 {
+               font-size: 50px;
+          }
+
+          p {
+               font-size: 30px;
+          }
+     }
+
+     .image {
+
+          img {
+
+          }
+     }
+}
+}
