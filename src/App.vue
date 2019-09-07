@@ -1,31 +1,26 @@
 <template>
     <div id="app" class="container-fluid">
 
-        
-
-        <header class="row headeri">
-            <h1><a href="/" class="">{{app_name}}</a></h1>
-        </header>
-        
-
-        <transition name="fade" mode="out-in" >
-        <router-view/>
-        </transition>
-
-        <footer >
-            <div class="row" >
-                <div class="col-md-6">
-                    
+        <header class="row header" >
+            <div class="inner">
+                <a href='/'><h1>{{ app_name }}</h1></a>
+                <input type="text" v-model='search' placeholder='search #artists'/>
+                <div class="search" v-if='search && filterArtists.length'>
+                    <ul>
+                        <li v-for='(artis, i) in filterArtists' :key="'artist'+i"><a :href="'/' + artis.username" >{{artis.username}}</a></li>
+                    </ul>
                 </div>
             </div>
-            
-        </footer>
+        </header>
 
-        <div id="sticky">
-            <a id="top">scroll top</a>
+        <div class="content">
+            <transition name="fade" mode="out-in" >
+                <router-view /> 
+            </transition>
         </div>
-        
+
     </div>
+    
 </template>
 
 <script>
@@ -33,33 +28,40 @@ import {web_socket} from '../config'
 import { mapGetters } from 'vuex'
 export default {
     name: 'App',
-    computed: {
-        ...mapGetters(['app_name'])
+    data() {
+        return {
+            search: ''
+        }
     },
-    mounted() {
-        var sticky = document.getElementById("top")
-        var searchInput = document.getElementById("searchInput")
+    computed: {
+        ...mapGetters([ 'app_name', 'artists' ]),
+        filterArtists() {
+            return this.artists.filter( artist => {
+                return artist.username.toLowerCase().indexOf( this.search.toLowerCase().trim()) > -1
+            })
+        }
+    },
+    asyncData({ store, route }) {
+            
+        let artists
+        let ready
 
-        function smoothscroll(){
-            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop
-            if (currentScroll > 0) {
-                window.requestAnimationFrame(smoothscroll)
-                window.scrollTo (0,currentScroll - (currentScroll/5))
+        const readyPromise = new Promise(( resolve, reject  ) => {
+            ready = resolve
+        })
+
+        const update = () => {
+            if( artists ) {
+                ready()
             }
         }
-        
-        
-        sticky.onclick = function() { smoothscroll() }
-        
-        window.onscroll = () => {
-            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop
-            if (currentScroll > 300) {
-                sticky.classList.add("display");
-            } else {
-                sticky.classList.remove("display");
-            }
-        }
-        
+
+        store.dispatch( 'getArtists' ).then( () => {
+            artists = true
+            update()
+        })
+
+        return readyPromise
     }
 }
 </script>

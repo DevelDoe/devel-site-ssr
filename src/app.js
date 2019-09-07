@@ -5,7 +5,6 @@ import { createStore } from './store'
 
 import style from './assets/scss/root.scss'
 
-
 import asyncData from './mixins/asyncData'
 Vue.mixin(asyncData)
 

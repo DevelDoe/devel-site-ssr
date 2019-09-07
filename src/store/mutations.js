@@ -5,10 +5,16 @@ export default {
     setPost(state, post) {
         state.post = post
     },
-    setAuthors(state, authors) {
-        state.authors = authors
+    setArtists(state, artists) {
+        state.artists = artists
     },
-    setAuthor(state, author) {
-        state.author = author
+    setAlbums(state, albums) {
+        state.albums = albums
     },
+    setAlbum(state, album) {
+        state.album = album
+    },
+    setArtist(state, artist) {
+        state.artist = artist
+    }
 }

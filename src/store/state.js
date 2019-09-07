@@ -3,6 +3,8 @@ export default {
     app_name,
     posts: [],
     post: null,
-    authors: [],
-    author: null
+    artists: [],
+    artist: null,
+    albums: [],
+    album: null
 }
