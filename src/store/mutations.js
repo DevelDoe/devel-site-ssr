@@ -13,5 +13,8 @@ export default {
     },
     setAlbum(state, album) {
         state.album = album
+    },
+    setArtist(state, artist) {
+        state.artist = artist
     }
 }

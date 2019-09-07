@@ -2,25 +2,22 @@
     <div id="app" class="container-fluid">
 
         <header class="row header" >
-            <h1>{{ app_name }}</h1>
-            <input type="text" v-model='search' placeholder='search #artists'/>
-           <div class="search" v-if='search && filterArtists.length'>
-                <ul>
-                    <li v-for='(artis, i) in filterArtists' :key="'artist'+i">{{artis.username}}</li>
-                </ul>
+            <div class="inner">
+                <a href='/'><h1>{{ app_name }}</h1></a>
+                <input type="text" v-model='search' placeholder='search #artists'/>
+                <div class="search" v-if='search && filterArtists.length'>
+                    <ul>
+                        <li v-for='(artis, i) in filterArtists' :key="'artist'+i"><a :href="'/' + artis.username" >{{artis.username}}</a></li>
+                    </ul>
+                </div>
             </div>
-
         </header>
-
-        
 
         <div class="content">
             <transition name="fade" mode="out-in" >
-                <router-view/>
+                <router-view /> 
             </transition>
         </div>
-
-
 
     </div>
     

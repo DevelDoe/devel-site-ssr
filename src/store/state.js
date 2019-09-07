@@ -4,6 +4,7 @@ export default {
     posts: [],
     post: null,
     artists: [],
+    artist: null,
     albums: [],
     album: null
 }

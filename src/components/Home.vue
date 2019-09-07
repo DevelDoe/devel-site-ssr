@@ -1,19 +1,21 @@
 <template>
     <div id="home">            
-        <div class="album" v-for="(album, i) in albums" :key="'album'+i" >
-            <router-link :to="{ name: 'album', query: { id: album._id } }" >
-                <div class="artist">
-                    <img :src=" url + album.artist_img" alt="">
-                    <h3 >{{ album.artist }}</h3>
-                </div>
-
-                <div class='img'>
-                    <div class="screen">
-                        <div class="cover"  :style="'background: url('+ url + album.images[0] +'); background-size: cover; background-position: 50% 50%'" :title="album.title"></div>
+        <div class="album" v-for="(album, i) in filterAlbum" :key="'album'+i" >
+                
+                <a :href="'/' + album.artist" >
+                    <div class="artist">
+                        <img :src=" url + album.artist_img" alt="">
+                        <h3 >{{ album.artist }}</h3>
                     </div>
-                    <h2 class=title>{{album.title}}</h2>
-                </div>
-            </router-link>
+                </a>
+                <a :href="'/album/' + album._id" >
+                    <div class='img'>
+                        <div class="screen">
+                            <div class="cover" :ref="album._id" :style="'background: url('+ url + album.images[0] +'); background-size: cover; background-position: 50% 50%'"></div>
+                        </div>
+                        <h2 class=title @mouseover="addClass(album._id)" @mouseleave="removeClass(album._id)">{{album.title}}</h2>
+                    </div>
+                </a>
         </div>
     </div>
 </template>
@@ -30,8 +32,17 @@ export default {
     },
     computed: {
         ...mapGetters([ 'artists', 'albums' ]),
+        filterAlbum() {
+            return this.albums.sort((a,b) => b.createdAt - a.createdAt)
+        }
     },
     methods: {
+        addClass(cover) {
+            this.$refs[cover][0].classList.add("active")
+        },
+        removeClass(cover) {
+            this.$refs[cover][0].classList.remove("active");
+        }
     },
     title() {
         return 'Home'

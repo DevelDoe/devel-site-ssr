@@ -14,3 +14,6 @@ export const albums = (state) => {
 export const album = (state) => {
     return state.album
 }
+export const artist = (state) => {
+    return state.artist
+} 

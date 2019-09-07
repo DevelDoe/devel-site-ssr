@@ -1,6 +1,6 @@
 #home {
      .album {
-          margin: 20px auto;
+          margin: 30px auto;
           margin-bottom: 40px;
           max-width: 860px;
           cursor: pointer;
@@ -8,7 +8,7 @@
           .artist {
                height: 55px;
                line-height: 55px;
-               padding: 5px 15px;
+               padding: 0px 15px;
                position: relative;
 
                img {
@@ -64,11 +64,72 @@
 
 
                     &:hover {
+                         opacity: 0.7;
+                         transition: opacity .25s;
                          transform: scale(1.1);
+                         transition: transform 0.3s ease-in-out;
                     }
+               }
+
+               .active {
+                    opacity: 0.7;
+                    transition: opacity .25s;
+                    transform: scale(1.1);
+                    transition: transform 0.3s ease-in-out;
                }
           }
      }
-     
-     
+}
+
+@media(min-width:768px) {
+     #home {
+          .album {
+
+
+               .artist {
+                    height: 60px;
+                    line-height: 55px;
+                    position: relative;
+
+                    img {
+                         display: inline-block;
+                         vertical-align: middle;
+                         height: 50px;
+                         border-radius: 50%;
+                    }
+
+                    h3 {
+                         font-size: 38px;
+                         left: 70px;
+                         position: absolute;
+                         display: inline-block;
+                         vertical-align: middle;
+                         line-height: 55px;
+                    }
+               }
+
+               .img {
+
+
+                    .title {}
+               }
+          }
+
+          .img {
+
+
+               .screen {
+
+
+                    .cover {
+
+
+
+                         &:hover {}
+                    }
+
+                    .active {}
+               }
+          }
+     }
 }

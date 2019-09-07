@@ -21,7 +21,7 @@
     font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Butcherman|Megrim|Poiret+One|Ruge+Boogie');
+@import url('https://fonts.googleapis.com/css?family=Megrim|Poiret+One|Quicksand');
 
 *:focus {
     outline: 0 !important;
@@ -37,7 +37,7 @@ html {
 
     body {
         font-size: 1rem;
-        font-family: 'Nunito', Fallback, sans-serif;
+        font-family: 'Quicksand', Fallback, sans-serif;
         letter-spacing: 1px;
         background-color: $background;
         color: $black;
@@ -95,54 +95,111 @@ html {
     }
     #app {
         width: 100%;
-        max-width: 960px;
 
         .header {
-            // border-bottom: 1px solid rgba(0, 0, 0, .0975);
+            border-bottom: 1px solid rgba(0, 0, 0, .0975);
             height: 80px;
             padding: 0 15px;
-            position: relative;
 
-            h1 {
-                display: inline-block;
-                line-height: 53px;
-                height: 80px;
-                padding: 10px;
-                padding-left: 0;
-                font-size: 46px;
-                letter-spacing: 0px;
-                color: #717171;
+            .inner {
+                max-width: 960px;
+                position: relative;
+                margin: 0 auto;
+
+                h1 {
+                    display: inline-block;
+                    line-height: 53px;
+                    height: 80px;
+                    padding: 10px;
+                    padding-left: 0;
+                    font-size: 46px;
+                    letter-spacing: 0px;
+                    color: #717171;
+                }
+
+
+                input {
+                    background: rgba(0, 0, 0, 0.2);
+                    color: $white;
+                    border: none;
+                    border-radius: 3px;
+                    font-size: 20px;
+                    position: absolute;
+                    top: 20px;
+                    right: 0px;
+                    width: 53%;
+                    padding: 3px 10px;
+                    max-width: 300px;
+                }
+
+                .search {
+                    z-index: 9999;
+                    position: absolute;
+                    top: 64px;
+                    right: 0px;
+                    width: 54%;
+                    background: rgba(0,0,0,0.5);
+                    padding: 10px;
+                    
+                    border-radius: 1px;
+                    max-width: 300px;
+
+                    a {
+                        color: $white;
+                        font-size: 20px;
+                    }
+                }
             }
 
-
-            input {
-                background: rgba(0, 0, 0, 0.2);
-                color: $white;
-                border: none;
-                border-radius: 3px;
-                font-size: 20px;
-                position: absolute;
-                top: 20px;
-                right: 13px;
-                width: 54%;
-                padding: 3px 10px;
-                max-width: 300px;
-            }
-
-            .search {
-                z-index: 9999;
-                position: absolute;
-                top: 64px;
-                right: 13px;
-                width: 54%;
-                background: #cccccc;
-                color: #ffffff;
-                padding: 10px;
-                font-size: 18px;
-                border-radius: 1px;
-                max-width: 300px;
-            }
+            
         }
     }
 }
 
+
+@media(min-width:768px) {
+    html {
+
+        body {
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {}
+
+            h1 {}
+
+            h2 {}
+
+            h3 {}
+
+            h4 {}
+
+            p {}
+
+            a {
+
+                &:hover {}
+            }
+
+            ::placeholder {}
+
+            em {}
+        }
+
+        #app {
+
+            .header {
+
+                h1 {}
+
+
+                input {}
+
+                .search {}
+            }
+        }
+    }
+}

@@ -1,11 +1,24 @@
 <template>
     <div id="album">
-        hello {{ album }}
+        <div class="info">
+            <h2>{{album.title}}</h2>
+            <p>{{album.summary}}</p>
+        </div>
+        <div class="image" v-for='(image, i) in album.images' :key='"image"+i'>
+            <img :src="url+image" alt="">
+        </div>
+
+        <div class="artist">
+            <a :href="'/' + artist.username" >
+                <img :src=" url + artist.img_src" alt="">
+                <h3 >{{ artist.username }}</h3>
+            </a>
+        </div>
     </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import { url } from '../../config'
 export default {
     name: 'Album',
@@ -15,17 +28,19 @@ export default {
         }
     },
     computed: {
-        ...mapGetters([ 'album' ]),
+        ...mapGetters([ 'artists ', 'album', 'artist' ]),
     },
     title() {
         return this.album.title
     },
     description() {
-        return this.album.summary
+        if(this.album.summary && this.album.summary !== '') return this.album.summary
+        else return ''
     },
     asyncData({ store, route }) {
 
         let album
+        let artists
         let ready
 
         const readyPromise = new Promise(( resolve, reject  ) => {
@@ -47,6 +62,8 @@ export default {
             album = true 
             update()
         })
+
+        
 
         return readyPromise
     }
