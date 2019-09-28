@@ -9,8 +9,8 @@ module.exports = {
 
     output: isProduction
     ? {
-        path: path.resolve(__dirname, '../../../server/apps/aquar'),
-        publicPath: '/aquar/',
+        path: path.resolve(__dirname, '../../../server/apps/wimse'),
+        publicPath: '/wimse/',
         filename: 'build.js'
     } 
     : {
