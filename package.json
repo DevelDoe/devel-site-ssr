@@ -35,7 +35,7 @@
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^2.0.0",
-    "highlight.js": "^9.13.1",
+    "highlight.js": "^10.1.2",
     "markdown-it": "^8.4.2",
     "moment": "^2.22.2",
     "node-sass": "^4.5.3",
